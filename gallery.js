@@ -41,7 +41,7 @@ function Gallery(gallery) {
   }
 
   function showNextImage() {
-    showImage(currentImage.nextElementSibling);
+    showImage(currentImage.nextElementSibling || gallery.firstElementChild);
   }
 
   function showImage(el) {
@@ -64,8 +64,6 @@ function Gallery(gallery) {
   );
 
   modal.addEventListener('click', handleClickOutside);
-  window.addEventListener('keyup', handleKeyUp);
-  nextButton.addEventListener('click', showNextImage);
 }
 
 // Use it on the page
