@@ -17,11 +17,17 @@ function Gallery(gallery) {
       return; // stop function from running
     }
     modal.classList.add('open');
+
+    // Event listeners to be bound when we open the modal
+    window.addEventListener('keyup', handleKeyUp);
+    nextButton.addEventListener('click', showNextImage);
   }
 
   function closeModal() {
     modal.classList.remove('open');
     // TODO: add event listeners for clicks and keyboard
+    window.removeEventListener('keyup', handleKeyUp);
+    nextButton.removeEventListener('click', showNextImage);
   }
 
   function handleClickOutside(e) {
@@ -32,6 +38,10 @@ function Gallery(gallery) {
 
   function handleKeyUp(event) {
     if (event.key === 'Escape') closeModal();
+  }
+
+  function showNextImage() {
+    showImage(currentImage.nextElementSibling);
   }
 
   function showImage(el) {
@@ -55,6 +65,7 @@ function Gallery(gallery) {
 
   modal.addEventListener('click', handleClickOutside);
   window.addEventListener('keyup', handleKeyUp);
+  nextButton.addEventListener('click', showNextImage);
 }
 
 // Use it on the page
